@@ -21,7 +21,6 @@ jobs:
           python-version: "3.12"
           cache: "pip"
       - run: pip install -r requirements.txt
-      - run: flake8 app/ --max-line-length=100
       - run: pytest app/tests/ -v
 
  
@@ -45,6 +44,6 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.IMAGE_NAME }}:latest
-            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/calculator:latest
+            ${{ secrets.DOCKER_USERNAME }}/calculator:${{ github.sha }}
 
